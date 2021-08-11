@@ -1,0 +1,74 @@
+﻿@model Book_Store.ViewModel.AddAttributeToBook
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<h1>Create</h1>
+
+<h4>Add New Book</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            @*enctype: to make forme work with Update Files*@
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="title" class="control-label"></label>
+                <input asp-for="title" class="form-control" />
+                <span asp-validation-for="title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Files" class="control-label"></label>
+                <input type="file" asp-for="Files" name="Files" class="form-control" />
+                <span asp-validation-for="Files" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="authorId" class="control-label"></label>
+                <select asp-for="authorId" class="form-control"
+                        asp-items="@(new SelectList(Model.authors, "id", "full_name"))"></select>
+
+                @if (ViewBag.ErrorMess != null)
+                {
+                    <span class="text-danger">@ViewBag.ErrorMess</span>
+                }
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="descreption" class="control-label"></label>
+                <textarea asp-for="descreption" id="text_editor_desc"></textarea>
+                <span asp-validation-for="descreption" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-group">
+                <span> <input type="submit" value="Create" class="btn btn-danger" style="font-weight: bold" /></span>
+                <span> <a asp-action="Index" class="btn btn-success" style="font-weight:bold">Back to List</a> </span>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<script src="~/lib/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('text_editor_desc', {
+        height: 400,
+        width: 1000,
+        uiColor: '#9AB8F3',
+        language: 'UTF-8',
+        extraPlugins: 'youtube',
+    });
+</script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

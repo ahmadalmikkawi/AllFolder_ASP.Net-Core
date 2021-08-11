@@ -1,0 +1,36 @@
+﻿@model Book_Store.Modules.Author
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete:<span style="color:red;font-weight:bold">@Html.DisplayFor(n => n.full_name)</span> </h3>
+<div>
+    <h4>Author</h4>
+    <div>
+        <table class="table table-boreder table-danger">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => m.id)</th>
+                    <th>@Html.DisplayNameFor(m => m.full_name)</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(m => m.id)</td>
+                    <td>@Html.DisplayFor(m => m.full_name)</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+    <form asp-action="Delete">
+        <span> <input type="submit" value="Delete" class="btn btn-danger" style="font-weight: bold" /></span>
+        <span> <a asp-action="Index" class="btn btn-success" style="font-weight:bold">Back to List</a> </span>
+    </form>
+</div>
+

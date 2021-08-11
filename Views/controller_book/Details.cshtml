@@ -1,0 +1,53 @@
+﻿@model Book_Store.Modules.Book
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+<hr />
+<div>
+    <table class="table table-boreder table-danger">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(m => m.id)</th>
+                <th>@Html.DisplayNameFor(m => m.title)</th>
+                <th>@Html.DisplayNameFor(m => m.descreption)</th>
+                <th>@Html.DisplayNameFor(m => m.author.full_name)</th>
+                <th>@Html.DisplayNameFor(m => m.UrlFile)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(m => m.id)</td>
+                <td>@Html.DisplayFor(m => m.title)</td>
+                <td>@Html.Raw(Model.descreption)
+                <td>@Html.DisplayFor(m => m.author.full_name)</td>
+                @{
+                    if (Model.UrlFile != null)
+                    {
+                        <td>
+                            <img src="~/AllFiles/@Model.UrlFile" style="width: 120px" />
+                        </td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                }
+
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<div>
+    <span><a asp-action="Edit" asp-route-id="@Model.id" class="btn btn-success" style="font-weight:bold">Edit</a> </span>
+    <span> <a asp-action="Index" class="btn btn-success" style="font-weight:bold">Back to List</a> </span>
+</div>
+
+
+
+

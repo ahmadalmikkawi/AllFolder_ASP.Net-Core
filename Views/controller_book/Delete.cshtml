@@ -1,0 +1,56 @@
+﻿@model Book_Store.Modules.Book
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<h1>Delete</h1>
+<hr />
+
+<h3>Are you sure you want to delete: <span style="color:red;font-weight:bold">@Html.DisplayFor(n => n.title)</span> </h3>
+<div>
+    <h4>Book</h4>
+    <div>
+        <table class="table table-boreder table-danger">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => m.id)</th>
+                    <th>@Html.DisplayNameFor(m => m.title)</th>
+                    <th>@Html.DisplayNameFor(m => m.descreption)</th>
+                    <th>@Html.DisplayNameFor(m => m.author.full_name)</th>
+                    <th>@Html.DisplayNameFor(m => m.UrlFile)</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>@Html.DisplayFor(m => m.id)</td>
+                    <td>@Html.DisplayFor(m => m.title)</td>
+                    <td>@Html.Raw(Model.descreption)</td>
+                    <td>@Html.DisplayFor(m => m.author.full_name)</td>
+                    </td>
+                    @{
+                        if (Model.UrlFile != null)
+                        {
+                            <td>
+                                <img src="~/AllFiles/@Model.UrlFile" style="width: 120px" />
+                            </td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                    }
+                    <td>
+                </tr>
+            </tbody>
+         
+        </table>
+    </div>
+
+    <form asp-action="Delete">
+        <span> <input type="submit" value="Delete" class="btn btn-danger" style="font-weight: bold" /></span>
+        <span> <a asp-action="Index" class="btn btn-success" style="font-weight:bold">Back to List</a> </span>
+    </form>
+</div>
